@@ -16,8 +16,7 @@ pipeline {
              steps {
                 script {
                     def dockerTag = "Book-API:${env.BUILD_NUMBER}"
-                    def containerId = sh(script: "docker run -d -t ${dockerTag}", returnStdout: true).trim()
-                    sh "docker exec ${containerId} docker build -t ${dockerTag} ."
+                    sh "docker build -t ${dockerTag} ."
                 }
              }
         }
