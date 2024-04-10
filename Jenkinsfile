@@ -16,9 +16,9 @@ pipeline {
         }
         stage('Build The Docker image') {
              steps {
-                 script{
-                    sh 'docker build -t Book-API .'
-                 }
+
+                sh 'docker build -t Book-API .'
+
 
              }
         }
