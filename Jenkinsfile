@@ -1,7 +1,5 @@
 pipeline {
     agent any
-
-
     stages {
         stage('Build') {
             steps {
@@ -18,7 +16,8 @@ pipeline {
              steps {
                 script {
                     def dockerTag = "Book-API:${env.BUILD_NUMBER}"
-                    sh "docker build -t ${dockerTag} ."
+                    def containerId = sh(script: "docker run -d -t ${dockerTag}", returnStdout: true).trim()
+                    sh "docker exec ${containerId} docker build -t ${dockerTag} ."
                 }
              }
         }
