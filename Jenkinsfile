@@ -14,5 +14,13 @@ pipeline {
                 sh './gradlew test'
             }
         }
+        stage('Build The Docker image') {
+             steps {
+                 script{
+                    sh 'docker build -t Book-API .'
+                 }
+
+             }
+        }
     }
 }
