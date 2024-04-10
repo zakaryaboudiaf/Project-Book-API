@@ -16,10 +16,10 @@ pipeline {
         }
         stage('Build The Docker image') {
              steps {
-
-                sh 'docker build -t Book-API .'
-
-
+                script {
+                    def dockerTag = "Book-API:${env.BUILD_NUMBER}"
+                    sh "docker build -t ${dockerTag} ."
+                }
              }
         }
     }
